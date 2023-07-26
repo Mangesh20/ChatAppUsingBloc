@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:chat_app_demo/login/data_layer/models/user.dart';
+
 enum AccountCreationStatus { unknown, created, notCreated }
 
 class AccountCreateRepository {
@@ -17,25 +19,20 @@ class AccountCreateRepository {
   }
 
 //passing username and password values for authentication purpose
-  Future<void> signUp({
+  Future<User> signUp({
     required String name,
     required String email,
-    required String password,
-  }) async {
-    await Future.delayed(
+    required String password, }) async {
+    return  Future.delayed(
       //Delaying the results for 1 second
       const Duration(seconds: 1),
       () {
         //making local validations for username and password
-        if (password == "password" && email == "progyny@test.com" && name == "progyny") {
-          return _controller.add(AccountCreationStatus.created);
-        } else {
-          return _controller.add(AccountCreationStatus.notCreated);
-        }
+        _controller.add(AccountCreationStatus.created);
+        return User(name, email, password);
       },
     );
   }
-
 
   //Closing strem controller _controller on dispose call
   void dispose() => _controller.close();

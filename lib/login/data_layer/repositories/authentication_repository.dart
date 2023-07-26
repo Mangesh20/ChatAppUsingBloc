@@ -27,9 +27,11 @@ class AuthenticationRepository {
       () {
         //making local validations for username and password
         if (password == "password" && username == "progyny@test.com") {
-          return _controller.add(AuthenticationStatus.authenticated);
+          _controller.add(AuthenticationStatus.authenticated);
+          return;
         } else {
-          return _controller.add(AuthenticationStatus.unauthenticated);
+          _controller.add(AuthenticationStatus.unauthenticated);
+          return;
         }
       },
     );

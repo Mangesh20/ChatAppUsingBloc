@@ -7,7 +7,7 @@ class UserRepository {
     if (_user != null) return _user;
     return Future.delayed(
       const Duration(milliseconds: 300),
-      () => _user = const User('Progyny', 'progyny@test.com'),
+      () => _user = const User('Progyny', 'progyny@test.com', 'password'),
     );
   }
 }

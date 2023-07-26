@@ -3,6 +3,7 @@ import 'package:chat_app_demo/login/buisness_layer/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:chat_app_demo/login/data_layer/models/models.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -51,7 +52,7 @@ class _EmailAddressInput extends StatelessWidget {
           onChanged: (emailAddress) => context.read<LoginBloc>().add(LoginEmailAddressChanged(emailAddress)),
           decoration: InputDecoration(
             labelText: 'email address',
-            errorText: state.emailAddress.displayError != null ? 'invalid email address' : null,
+            errorText: state.emailAddress.displayError != null ? _getInvalidEmailErrorMessageFor(state.emailAddress.error) : null,
           ),
         );
       },
@@ -71,7 +72,7 @@ class _PasswordInput extends StatelessWidget {
           obscureText: true,
           decoration: InputDecoration(
             labelText: 'password',
-            errorText: state.password.displayError != null ? 'invalid password' : null,
+            errorText: state.password.displayError != null ? _getInvalidPasswordErrorMessageFor(state.password.error) : null,
           ),
         );
       },
@@ -101,13 +102,50 @@ class _LoginButton extends StatelessWidget {
 }
 
 class _SignupButton extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          Navigator.push(context, SignUpPage.route());
+        onPressed: ()  {
+          Navigator.push(
+            context,
+            SignUpPage.route(),
+          );
         },
         child: const Text('Sign Up'));
+  }
+}
+
+String _getInvalidPasswordErrorMessageFor(PasswordValidationError? error) {
+  switch (error) {
+    case PasswordValidationError.empty:
+      return 'Password cannot be empty';
+
+    case PasswordValidationError.tooLongLength:
+      return 'Password too long';
+
+    case PasswordValidationError.tooShortLength:
+      return 'Password too short';
+
+    default:
+      return 'invalid password';
+  }
+}
+
+String _getInvalidEmailErrorMessageFor(EmailValidationError? error) {
+  switch (error) {
+    case EmailValidationError.empty:
+      return 'Email cannot be empty';
+
+    case EmailValidationError.tooLongLength:
+      return 'Email too long';
+
+    case EmailValidationError.tooShortLength:
+      return 'Email too short';
+
+    case EmailValidationError.emailNotValid:
+      return 'Email address not valid';
+
+    default:
+      return 'invalid email address';
   }
 }

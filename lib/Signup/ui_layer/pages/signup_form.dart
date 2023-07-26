@@ -1,4 +1,5 @@
 import 'package:chat_app_demo/Signup/buisness_layer/bloc/signup_bloc.dart';
+import 'package:chat_app_demo/login/data_layer/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -8,6 +9,8 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? _user;
+
     return BlocListener<SignupBloc, SignupState>(
       listener: (context, state) {
         if (state.status.isFailure) {
@@ -23,8 +26,8 @@ class SignupForm extends StatelessWidget {
             ..showSnackBar(
               const SnackBar(content: Text('Account created successfully!')),
             );
-            
-          Navigator.pop(context);
+
+          Navigator.pop(context, _user);
         }
       },
       child: Align(
@@ -57,7 +60,7 @@ class _UsernameInput extends StatelessWidget {
           onChanged: (username) => context.read<SignupBloc>().add(SignupUsernameChanged(username)),
           decoration: InputDecoration(
             labelText: 'Username',
-            errorText: state.emailAddress.displayError != null ? 'invalid username' : null,
+            errorText: state.username.displayError != null ? 'invalid username' : null,
           ),
         );
       },

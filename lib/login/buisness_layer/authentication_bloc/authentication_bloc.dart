@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:chat_app_demo/login/data_layer/models/models.dart';
 import 'package:chat_app_demo/login/data_layer/repositories/authentication_repository.dart';
@@ -12,6 +11,7 @@ part 'authentication_state.dart';
 
 /// AuthenticationBloc is responsbile for providing the states authenticated and unauthenticated based on login form event submit button 
 
+
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
     required AuthenticationRepository authenticationRepository,
@@ -19,8 +19,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   })  : _authenticationRepository = authenticationRepository,
         _userRepository = userRepository,
         super(const AuthenticationState.unknown()) {
+    //Events       
     on<_AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
+    
+    //stream subcription for _AuthenticationStatusChanged
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
       (status) => add(_AuthenticationStatusChanged(status)),
     );

@@ -15,7 +15,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  ///variable initializers 
+
   late final AuthenticationRepository _authenticationRepository;
   late final UserRepository _userRepository;
 

@@ -1,12 +1,12 @@
 import 'package:chat_app_demo/login/buisness_layer/authentication_bloc/authentication_bloc.dart';
 import 'package:chat_app_demo/login/data_layer/repositories/authentication_repository.dart';
-import 'package:chat_app_demo/login/ui_layer/pages/home_page.dart';
+import 'package:chat_app_demo/home/ui_layer/pages/home_page.dart';
 import 'package:chat_app_demo/login/ui_layer/pages/login_page.dart';
 import 'package:chat_app_demo/login/ui_layer/widgets/activity_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// AppView class is responsible for providing routing logic on authentication state change 
+/// AppView class is responsible for providing routing logic on authentication state change
 
 class AppView extends StatefulWidget {
   const AppView({super.key});
@@ -23,6 +23,7 @@ class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: _navigatorKey,
       builder: (context, child) {
         return BlocListener<AuthenticationBloc, AuthenticationState>(
