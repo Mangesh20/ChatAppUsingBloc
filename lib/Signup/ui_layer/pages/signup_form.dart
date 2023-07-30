@@ -9,7 +9,7 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? _user;
+    User? user;
 
     return BlocListener<SignupBloc, SignupState>(
       listener: (context, state) {
@@ -27,7 +27,7 @@ class SignupForm extends StatelessWidget {
               const SnackBar(content: Text('Account created successfully!')),
             );
 
-          Navigator.pop(context, _user);
+          Navigator.pop(context, user);
         }
       },
       child: Align(
