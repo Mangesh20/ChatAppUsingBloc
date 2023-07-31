@@ -1,16 +1,21 @@
 import 'package:equatable/equatable.dart';
 
-/// User is data model  
+/// User is data model
 
 class User extends Equatable {
-  const User(this.name, this.emailAddress, this.password);
+  const User(
+    this.name,
+    this.emailAddress,
+  );
 
   final String name;
   final String emailAddress;
-  final String password;
 
   @override
-  List<Object> get props => [name, password, emailAddress];
+  List<Object> get props => [name, emailAddress];
 
-  static const empty = User('-', '-', '_');
+  static const empty = User(
+    '-',
+    '-',
+  );
 }

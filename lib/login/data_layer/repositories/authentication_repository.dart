@@ -4,6 +4,14 @@ enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class AuthenticationRepository {
   final _controller = StreamController<AuthenticationStatus>();
+  final List<String> _validUserNames = [
+    'progyny1@test.com',
+    'progyny2@test.com',
+    'progyny3@test.com',
+    'progyny4@test.com',
+    'progyny5@test.com',
+  ];
+  String userName = '';
 
   Stream<AuthenticationStatus> get status async* {
     /// Delaying result for 1 second to get the status
@@ -18,7 +26,7 @@ class AuthenticationRepository {
 
 //passing username and password values for authentication purpose
   Future<void> logIn({
-    required String username,
+    required String userName,
     required String password,
   }) async {
     await Future.delayed(
@@ -26,15 +34,16 @@ class AuthenticationRepository {
       const Duration(seconds: 1),
       () {
         //making local validations for username and password
-        if (password == "password" && username == "progyny@test.com") {
+        if (password == "password" && _validUserNames.contains(userName)) {
+          this.userName = userName;
           _controller.add(AuthenticationStatus.authenticated);
           return;
         } else {
-          _controller.add(AuthenticationStatus.unauthenticated);
-          return;
+          return _controller.add(AuthenticationStatus.unauthenticated);
         }
       },
     );
+    return;
   }
 
   void logOut() {

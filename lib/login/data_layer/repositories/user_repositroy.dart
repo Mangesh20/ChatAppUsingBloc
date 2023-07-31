@@ -2,12 +2,13 @@ import 'dart:async';
 import 'package:chat_app_demo/login/data_layer/models/models.dart';
 
 class UserRepository {
-  User? _user;
-  Future<User?> getUser() async {
-    if (_user != null) return _user;
+  Future<User?> getUser(String username) async {
     return Future.delayed(
       const Duration(milliseconds: 300),
-      () => _user = const User('Progyny', 'progyny@test.com', 'password'),
+      () => User(
+        username.replaceAll('@test.com', ''),
+        username,
+      ),
     );
   }
 }

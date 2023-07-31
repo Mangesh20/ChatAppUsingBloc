@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),
+            
             onPressed: () => context.read<AuthenticationBloc>().add(
                   AuthenticationLogoutRequested(),
                 ),

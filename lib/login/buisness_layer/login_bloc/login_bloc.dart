@@ -7,7 +7,7 @@ import 'package:chat_app_demo/login/data_layer/models/models.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-///LoginBloc is used to handle login events and states 
+///LoginBloc is used to handle login events and states
 ///
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
@@ -55,10 +55,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
         await _authenticationRepository.logIn(
-          username: state.emailAddress.value,
+          userName: state.emailAddress.value,
           password: state.password.value,
         );
-        emit(state.copyWith(status: FormzSubmissionStatus.success));
+        emit(state.copyWith(
+          status: FormzSubmissionStatus.success,
+        ));
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }

@@ -29,7 +29,7 @@ class AccountCreateRepository {
       () {
         //making local validations for username and password
         _controller.add(AccountCreationStatus.created);
-        return User(name, email, password);
+        return User(name, email);
       },
     );
   }

@@ -13,10 +13,10 @@ final class LoginState extends Equatable {
   final Password password;
   final bool isValid;
 
-///The copyWith method in the LoginState class is a common pattern for implementing immutability in Dart. 
-///Immutability means that the state object can't be changed once it's created. 
-///If you need to change the state, you have to create a new state object. 
-///The copyWith method helps with this. It creates a new LoginState object with the updated 
+  ///The copyWith method in the LoginState class is a common pattern for implementing immutability in Dart.
+  ///Immutability means that the state object can't be changed once it's created.
+  ///If you need to change the state, you have to create a new state object.
+  ///The copyWith method helps with this. It creates a new LoginState object with the updated
   LoginState copyWith({
     FormzSubmissionStatus? status,
     EmailAddress? emailAddress,

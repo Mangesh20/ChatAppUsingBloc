@@ -1,13 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 class ChatMessage extends Equatable {
-  const ChatMessage({required this.userName, required this.message, required this.dateTime });
+  const ChatMessage({
+    required this.sender,
+    required this.receiver,
+    required this.message,
+    required this.dateTime,
+  });
 
-  final String userName;
+
+  final String sender;
+  final String receiver;
   final String message;
   final DateTime dateTime;
 
-
   @override
-  List<Object> get props => [ userName, message, dateTime];
+  List<Object> get props => [sender, receiver, message, dateTime];
 }
