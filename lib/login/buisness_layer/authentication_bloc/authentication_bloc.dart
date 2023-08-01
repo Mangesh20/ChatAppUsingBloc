@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:chat_app_demo/chat_window/data_layer/repositories/chat_records_repositry.dart';
 import 'package:chat_app_demo/login/data_layer/models/models.dart';
 import 'package:chat_app_demo/login/data_layer/repositories/authentication_repository.dart';
 import 'package:chat_app_demo/login/data_layer/repositories/user_repositroy.dart';

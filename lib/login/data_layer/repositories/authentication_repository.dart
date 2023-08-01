@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
@@ -25,7 +26,7 @@ class AuthenticationRepository {
   }
 
 //passing username and password values for authentication purpose
-  Future<void> logIn({
+  Future<bool> logIn({
     required String userName,
     required String password,
   }) async {
@@ -37,13 +38,14 @@ class AuthenticationRepository {
         if (password == "password" && _validUserNames.contains(userName)) {
           this.userName = userName;
           _controller.add(AuthenticationStatus.authenticated);
-          return;
+          return true;
         } else {
-          return _controller.add(AuthenticationStatus.unauthenticated);
+          _controller.add(AuthenticationStatus.unauthenticated);
+          return false;
         }
       },
     );
-    return;
+    return false;
   }
 
   void logOut() {

@@ -105,7 +105,7 @@ class _SignupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: ()  {
+        onPressed: () {
           Navigator.push(
             context,
             SignUpPage.route(),
